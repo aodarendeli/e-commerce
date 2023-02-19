@@ -7,7 +7,7 @@ function Footer() {
             <div className="container">
                 <div className="row">
                     <div className="col-lg-5 col-xs-12 about-company">
-                        <h2>Technoly</h2>
+                        <h2>E-Commerce</h2>
                         <p className="pr-5 text-white-50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ante mollis quam tristique convallis </p>
                     </div>
                     <div className="col-lg-3 col-xs-12 links">

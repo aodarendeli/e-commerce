@@ -1,13 +1,21 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { Container, Row, Col } from 'react-bootstrap';
+import Campaign from '../../components/Campaign/Campaign'
+import Slider from '../../components/Slider/Slider';
+
 function Dashboard() {
-  const todoValue = useSelector(state => state.todo)
-  console.log(todoValue)
+
 
   return (
-    <div>
-      <img src={'/images/flight.jpg'} className='img-fluid' />
-    </div>
+    <>
+      <Slider />
+
+      <h1>
+        Kampanyalar
+      </h1>
+      <Campaign />
+      </>
   )
 }
 

@@ -10,10 +10,6 @@ function Dashboard() {
   return (
     <>
       <Slider />
-
-      <h1>
-        Kampanyalar
-      </h1>
       <Campaign />
       </>
   )

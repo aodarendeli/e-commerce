@@ -35,7 +35,7 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
             <Nav className="me-auto">
               <Link to="/cart" className='nav-link'>
-                <i className="fas fa-cart-shopping me-2"></i>Shopping
+                <i className="fas fa-cart-shopping me-2"></i>{t('Shopping')}
               </Link>
             </Nav>
             <Nav>

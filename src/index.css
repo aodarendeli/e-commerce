@@ -18,3 +18,7 @@ a{
 /* main{
   height: 70vh;
 } */
+
+.flex-wrap {
+  flex-wrap: wrap;
+}

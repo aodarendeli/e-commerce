@@ -10,11 +10,16 @@ i18n
       tr: {
         translations: {
           "Home": "Ana Sayfa",
+          "Shopping" : "Alışveriş",
+          "Campaign" : "Kampanyalar",
+
         }
       },
       en: {
         translations: {
           "Home": "Home",
+          "Shopping" : "Shopping",
+          "Campaign" : "Campaign",
         }
       }
     },

@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import requestUtil from '../../helpers/requestUtil'
 import axios from "axios";
+
+const { request } = requestUtil();
 
 const initialState = {
   loading: false,
@@ -8,35 +11,52 @@ const initialState = {
   error: ''
 }
 
-//Register axios call
-export const fecthRegisterUser = createAsyncThunk('fecthRegisterUser', async (body) => {
-  const config = {
-    headers: {
-      'Content-Type': "application/json"
+// Register axios call
+export const fecthRegisterUser = createAsyncThunk(
+  'auth/register',
+  async (payload) => {
+    try {
+      const response = await request.post('/Auth/Register', payload);
+      localStorage.setItem('userInfo', JSON.stringify(response))
+      return response.data;
+    } catch (error) {
+      return error.response.data
     }
   }
-  const { data } = await axios.post('http://localhost:3001/api/users', body, config)
+)
 
-  localStorage.setItem('userInfo', JSON.stringify(data))
-  return data;
-})
 
 //Login axios call
-export const LoginUser = createAsyncThunk('login/user', async (body) => {
-  try {
-    const config = {
-      headers: {
-        'Content-Type': "application/json"
-      }
-    }
-    const { data } = await axios.post('http://localhost:3001/api/users/login', body, config)
 
-    localStorage.setItem('userInfo', JSON.stringify(data))
-    return data;
-  } catch (error) {
-    return error.response.data.message
+export const LoginUser = createAsyncThunk(
+  'auth/login',
+  async (payload) => {
+    try {
+      const response = await request.post('/Auth/SignIn', payload);
+      localStorage.setItem('userInfo', JSON.stringify(response))
+      return response.data;
+    } catch (error) {
+      return error.response.data
+    }
+
   }
-})
+)
+
+// export const LoginUser = createAsyncThunk('login/user', async (body) => {
+//   try {
+//     const config = {
+//       headers: {
+//         'Content-Type': "application/json"
+//       }
+//     }
+//     const { data } = await axios.post('http://localhost:3001/api/users/login', body, config)
+
+//     localStorage.setItem('userInfo', JSON.stringify(data))
+//     return data;
+//   } catch (error) {
+//     return error.response.data.message
+//   }
+// })
 
 const authSlice = createSlice({
   name: 'auth',
@@ -54,28 +74,32 @@ const authSlice = createSlice({
     builder.addCase(fecthRegisterUser.fulfilled, (state, action) => {
       state.loading = false
       state.userInfo = action.payload
-      state.error = ''
     })
     builder.addCase(fecthRegisterUser.rejected, (state, action) => {
       state.loading = false
       state.userInfo = []
-      state.error = action.error.message
+      state.error = action.payload
     })
+
+
+
     builder.addCase(LoginUser.pending, state => {
       state.loading = true
     })
-    builder.addCase(LoginUser.fulfilled, (state, {payload: {error,message}}) => {
+    builder.addCase(LoginUser.fulfilled, (state, action) => {
       state.loading = false
-      if(error){
-        state.error = error
-        console.log(error)
+      console.log(state.error)
+      if(action.payload == "Kullanıcı Adı veya Şifre hatalı"){
+        state.userInfo = "";
+        state.error = action.payload;
       }
       else{
-        state.message = message
+        state.userInfo = action.payload
       }
     })
     builder.addCase(LoginUser.rejected, (state, action) => {
-      state.loading = true
+      state.loading = false;
+      state.error = action.payload;
     })
   }
 })

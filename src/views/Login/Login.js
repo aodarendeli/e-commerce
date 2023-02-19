@@ -8,7 +8,7 @@ import { selectUserInfo,selectLoadingState,selectErrorState,LoginUser } from '..
 import { useLocation,useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [email, setEmail] = useState("")
+    const [username, seUsername] = useState("")
     const [password, setPassword] = useState("")
 
     let location = useLocation();
@@ -19,7 +19,6 @@ function Login() {
     const userInformation = useSelector(selectUserInfo)
     const error = useSelector(selectErrorState)
     const loading = useSelector(selectLoadingState)
-    console.log(error)
 
     useEffect(() => {
         if(userInformation){
@@ -29,7 +28,7 @@ function Login() {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(LoginUser({email,password}))
+        dispatch(LoginUser({username,password}))
     }
 
     return (
@@ -40,12 +39,12 @@ function Login() {
             }
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId='email'>
+                <Form.Group controlId='usernmae'>
                     <Form.Control
-                        type='email'
-                        placeholder='enter emeail'
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}>
+                        type='text'
+                        placeholder='username'
+                        value={username}
+                        onChange={(e) => seUsername(e.target.value)}>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId='password' className='mt-3'>

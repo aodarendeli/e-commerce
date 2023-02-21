@@ -6,6 +6,8 @@ import Contact from './views/contact/Contact';
 import Footer from './components/Common/Footer/Footer';
 import Login from './views/Login/Login';
 import Register from './views/Register/Register';
+import CampaignDetail from './components/CampaignDetail/CampaignDetail';
+import AddCampaign from './components/Campaign/AddCampaign';
 
 
 
@@ -18,6 +20,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/campaign/:id" element={<CampaignDetail />} />
+            <Route path="/addcampaign" element={<AddCampaign />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>

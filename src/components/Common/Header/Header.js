@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 function Header() {
   const dispatch = useDispatch()
   const userInformation = useSelector(selectUserInfo)
+  console.log(userInformation)
   const { t, i18n } = useTranslation();
   const [type, setType] = useState('tr');
 
@@ -49,11 +50,16 @@ function Header() {
 
             <Nav>
               {userInformation ? (
-                <Link to="/" className='nav-link' onClick={logoutHandler}>
-                  <i className="fas fa-user mx-2"></i>
-                  <span>{userInformation.name}</span>
-                  <span className='mx-2'>logout</span>
-                </Link>
+                <>
+                  <Link to="/" className='nav-link' onClick={logoutHandler}>
+                    <i className="fas fa-user mx-2"></i>
+                    <span>{userInformation.name}</span>
+                    <span className='mx-2'>logout</span>
+                  </Link>
+                  <Link to="/addcampaign">
+                    <span className='mx-2'>Add Campaign</span>
+                  </Link>
+                </>
               ) :
                 <Link to="/login" className='nav-link'>
                   <i className="fas fa-user mx-2"></i>login

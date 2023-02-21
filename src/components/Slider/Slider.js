@@ -11,7 +11,6 @@ function Slider() {
 
     const sliderList = useSelector(selectSliderList)
     const sliderLoading = useSelector(selectSliderLoadingState)
-    console.log(sliderList)
 
     useEffect(() => {
         dispatch(fecthSliderList())

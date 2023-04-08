@@ -27,6 +27,32 @@
 .App-link {
   color: #61dafb;
 }
+.flex-wrap {
+  flex-wrap: nowrap;
+}
+.row-gap {
+  row-gap: 30px;
+}
+.col-gap {
+  column-gap: 30px;
+}
+
+.item-box{
+  border: 1px solid black;
+  padding: 10px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+.flex-col{
+  flex-direction: column;
+}
 
 @keyframes App-logo-spin {
   from {

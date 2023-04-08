@@ -32,11 +32,11 @@ function Campaign() {
             {campaignLoading && <Loader />}
             <div className='d-flex justify-content-between flex-wrap'>
               {
-                campaignList && campaignList.map(item => (
-                  <div key={item.id}>
+                campaignList && campaignList.map((item,index) => (
+                  <div key={index}>
                     <Link to={`/campaign/${item.id}`}>
                       <Card style={{ width: '18rem' }}>
-                        <Card.Img width={200} height={200} variant="top" src={`https://www.sahidenbin.com/${item.photoUrl}`} />
+                        <Card.Img width={200} height={200} variant="top" src={item.photoUrl} />
                         <Card.Body>
                           <Card.Title>{item.title}</Card.Title>
                           <Card.Text>

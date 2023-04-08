@@ -31,7 +31,7 @@ function CampaignDetail() {
                         {
                             campaignSelectedList &&
                             <Card style={{ width: '18rem' }}>
-                                <Card.Img width={200} height={200} variant="top" src={`https://www.sahidenbin.com/${campaignSelectedList.photoUrl}`} />
+                                <Card.Img width={200} height={200} variant="top" src={campaignSelectedList.photoUrl} />
                                 <Card.Body>
                                     <Card.Title>{campaignSelectedList.title}</Card.Title>
                                     <Card.Text>

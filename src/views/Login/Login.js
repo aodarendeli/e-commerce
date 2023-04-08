@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Form, Button, Row, Col,Container } from 'react-bootstrap'
+import { Form, Button, Row, Col, Container } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../../components/Message/Message'
 import Loader from '../../components/Loader/Loader'
-import { selectUserInfo,selectLoadingState,selectErrorState,LoginUser } from '../../store/auth'
-import { useLocation,useNavigate } from 'react-router-dom';
+import { selectUserInfo, selectLoadingState, selectErrorState, LoginUser, checkAdmin, selectAdmin, controlUser } from '../../store/auth'
+import { useLocation, useNavigate } from 'react-router-dom';
+import jwt from 'jwt-decode';
 
 function Login() {
     const [username, seUsername] = useState("")
@@ -17,19 +18,38 @@ function Login() {
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
     const userInformation = useSelector(selectUserInfo)
+    const user = userInformation && jwt(userInformation.data)
+    const selectAdmins = useSelector(selectAdmin)
+
+
+    let userVal = selectAdmins?.data?.find(val => val?.username == user?.Name)
+    
+    useEffect(() => {
+        if (userVal) {
+            dispatch(controlUser(userVal))
+        }
+    }, [userVal, dispatch])
+
+
     const error = useSelector(selectErrorState)
     const loading = useSelector(selectLoadingState)
 
     useEffect(() => {
-        if(userInformation){
+        if (userInformation) {
             navigate(redirect)
         }
-    },[navigate,userInformation,redirect])
+    }, [navigate, userInformation, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
-        dispatch(LoginUser({username,password}))
+        dispatch(LoginUser({ username, password }))
+        dispatch(checkAdmin())
+        // dispatch(controlUser(selectAdmins))
     }
+
+    // useEffect(() => {
+    //     dispatch(controlUser(userVal))
+    // }, [dispatch])
 
     return (
         <Container>

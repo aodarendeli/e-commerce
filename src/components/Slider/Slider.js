@@ -25,7 +25,7 @@ function Slider() {
                     <Carousel.Item key={item.id}>
                         <img
                             className="d-block w-100"
-                            src={`${WEBSITE_URL + `${item.photoUrl}`}`}
+                            src={item.photoUrl}
                             alt="First slide"
                         />
                         <Carousel.Caption>

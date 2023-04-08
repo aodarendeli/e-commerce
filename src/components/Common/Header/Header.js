@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import { logout, selectUserInfo } from '../../../store/auth'
+import { logout, selectAdmin, selectUserInfo } from '../../../store/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from "react-i18next";
 import Form from 'react-bootstrap/Form';
+import jwt from 'jwt-decode';
 
 
 
@@ -12,13 +13,13 @@ function Header() {
   const dispatch = useDispatch()
   const userInformation = useSelector(selectUserInfo)
   console.log(userInformation)
+
   const { t, i18n } = useTranslation();
   const [type, setType] = useState('tr');
 
   const logoutHandler = () => {
     dispatch(logout())
   }
-
   const changeLanguage = lng => {
     setType(lng.target.value);
     i18n.changeLanguage(lng.target.value);
@@ -39,6 +40,7 @@ function Header() {
                 <i className="fas fa-cart-shopping me-2"></i>{t('Shopping')}
               </Link>
             </Nav>
+
             <Nav>
               <Form.Control as="select"
                 onChange={(event) => { changeLanguage(event) }}
@@ -56,9 +58,14 @@ function Header() {
                     <span>{userInformation.name}</span>
                     <span className='mx-2'>logout</span>
                   </Link>
-                  <Link to="/addcampaign">
+                  {/* <Link to="/addcampaign">
                     <span className='mx-2'>Add Campaign</span>
-                  </Link>
+                  </Link> */}
+                  <Nav className="me-auto">
+                    <Link to="/order" className='nav-link'>
+                      <i className="fas fa-cart-shopping me-2"></i>Order
+                    </Link>
+                  </Nav>
                 </>
               ) :
                 <Link to="/login" className='nav-link'>

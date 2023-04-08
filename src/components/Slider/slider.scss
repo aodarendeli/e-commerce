@@ -1,0 +1,19 @@
+.carousel-caption {
+    width: 100% !important;
+    top: 20%;
+    text-align: left !important;
+
+    h3,
+    h1 {
+        color: black;
+    }
+    button{
+        background-color: #717fe0;
+        opacity: 1 !important;
+        padding: 7px 20px;
+        border-radius: 15px;
+        &:hover{
+            opacity: .7 !important;
+        }
+    }
+}

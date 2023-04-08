@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import { logout, selectAdmin, selectUserInfo } from '../../../store/auth'
+import { logout, selectUserInfo } from '../../../store/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from "react-i18next";
 import Form from 'react-bootstrap/Form';
-import jwt from 'jwt-decode';
 
 
 
@@ -35,11 +34,18 @@ function Header() {
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav" className='justify-content-end'>
-            <Nav className="me-auto">
+            {/* <Nav className="me-auto">
               <Link to="/cart" className='nav-link'>
                 <i className="fas fa-cart-shopping me-2"></i>{t('Shopping')}
               </Link>
-            </Nav>
+            </Nav> */}
+            {userInformation &&
+              <Nav className="me-auto">
+                <Link to="/order" className='nav-link'>
+                  <i className="fas fa-cart-shopping me-2"></i>Order
+                </Link>
+              </Nav>
+            }
 
             <Nav>
               <Form.Control as="select"
@@ -61,11 +67,6 @@ function Header() {
                   {/* <Link to="/addcampaign">
                     <span className='mx-2'>Add Campaign</span>
                   </Link> */}
-                  <Nav className="me-auto">
-                    <Link to="/order" className='nav-link'>
-                      <i className="fas fa-cart-shopping me-2"></i>Order
-                    </Link>
-                  </Nav>
                 </>
               ) :
                 <Link to="/login" className='nav-link'>

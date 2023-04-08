@@ -27,10 +27,11 @@ const GetProductDetail = () => {
     }
 
     const setCheckout = () => {
+        console.log("kontrol", userGuid)
         let payload = {
             customerGuid: userGuid,
             productId: params.id,
-            quantity: 1,
+            quantity: quantity,
             status: "Open"
         }
         dispatch(fecthOrderList(payload))

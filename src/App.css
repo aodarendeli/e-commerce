@@ -62,3 +62,8 @@
     transform: rotate(360deg);
   }
 }
+
+.form-control{
+  background-color: transparent !important;
+  color: white !important;
+}

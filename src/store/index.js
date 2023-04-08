@@ -5,6 +5,7 @@ import campaignSlice from './campaign'
 import sliderSlice from './slider'
 import productSlice from './products'
 import orderSlice from './order'
+import categoriesSlice from './categories'
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     slider: sliderSlice,
     product: productSlice,
     order: orderSlice,
+    categories: categoriesSlice,
   },
 })
 

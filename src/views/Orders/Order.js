@@ -5,6 +5,7 @@ import { fetchbasketList, selectBasketList } from '../../store/order';
 function Order() {
     const dispatch = useDispatch();
     const basketList = useSelector(selectBasketList)
+    console.log("sepet",basketList)
     useEffect(() => {
         dispatch(fetchbasketList(localStorage.getItem("userGuid")))
     }, [dispatch])

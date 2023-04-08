@@ -10,7 +10,7 @@ import CampaignDetail from './components/CampaignDetail/CampaignDetail';
 import AddCampaign from './components/Campaign/AddCampaign';
 import GetProductDetail from './components/Products/GetProductDetail';
 import Order from './views/Orders/Order';
-
+import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 function App() {
   return (
     <>
@@ -22,6 +22,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/campaign/:id" element={<CampaignDetail />} />
             <Route path="/product/:id" element={<GetProductDetail />} />
+            <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/order" element={<Order />} />
             <Route path="/addcampaign" element={<AddCampaign />} />
             <Route path="/login" element={<Login />} />

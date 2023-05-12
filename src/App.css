@@ -65,5 +65,10 @@
 
 .form-control{
   background-color: transparent !important;
-  color: white !important;
+  /* color: white !important; */
+}
+
+.dropdown-menu {
+  height: 150px !important;
+  overflow: scroll !important;
 }

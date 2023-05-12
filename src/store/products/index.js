@@ -39,6 +39,7 @@ const productSlice = createSlice({
             state.selectedProductList.data.mainProduct = arr
 
             for (let i = 0; i < state.selectedProductList.data.otherProducts.length; i++) {
+
                 if (state.selectedProductList.data.otherProducts[i].name === arr.name)
                     state.selectedProductList.data.otherProducts[i] = arr2
             }

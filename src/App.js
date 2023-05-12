@@ -11,6 +11,7 @@ import AddCampaign from './components/Campaign/AddCampaign';
 import GetProductDetail from './components/Products/GetProductDetail';
 import Order from './views/Orders/Order';
 import CategoryDetail from './components/CategoryDetail/CategoryDetail';
+import Checkout from './views/Checkout/Checkout';
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
             <Route path="/product/:id" element={<GetProductDetail />} />
             <Route path="/category/:id" element={<CategoryDetail />} />
             <Route path="/order" element={<Order />} />
+            <Route path="/checkout/:id" element={<Checkout />} />
             <Route path="/addcampaign" element={<AddCampaign />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />

@@ -3,18 +3,23 @@ import { Button, Card, Carousel, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { selectAdmin, selectUserInfo, controlUser } from '../../store/auth';
-import { fecthProductSelectedList, selectedProductsList, swapProducts } from '../../store/products';
+import { fecthProductSelectedList, selectedProductsList, selectProductsList, swapProducts } from '../../store/products';
 import '../../styles/product.scss'
 import { fecthOrderList } from '../../store/order';
+import Message from '../Message/Message';
 
 
 const GetProductDetail = () => {
     let params = useParams();
     const [quantity, setQuantitiy] = useState(1)
+    const [controlMessage,setControlMessage] = useState(false)
     const navigate = useNavigate();
     const selectUserAdmin = useSelector(controlUser)
     const userGuid = selectUserAdmin.payload.auth.controlUser.guid
+    const selectedProductList = useSelector(state=>state.product.selectedProductList?.data?.mainProduct?.id)
     const dispatch = useDispatch()
+
+    
 
     useEffect(() => {
         dispatch(fecthProductSelectedList(params.id))
@@ -27,16 +32,22 @@ const GetProductDetail = () => {
     }
 
     const setCheckout = () => {
-        console.log("kontrol", userGuid)
+        if(userGuid) {
         let payload = {
-            customerGuid: userGuid,
-            productId: params.id,
+            customerGuid: localStorage.getItem("userGuid"),
+            productId: selectedProductList,
             quantity: quantity,
-            status: "Open"
+            status: "Open",
         }
         dispatch(fecthOrderList(payload))
-        navigate('/order')
+        setTimeout(() => {
+            navigate('/order')
+        },[100])
     }
+    else{
+        setControlMessage(true)
+    }
+}
     return (
         <>
             <div className='container'>
@@ -82,6 +93,11 @@ const GetProductDetail = () => {
 
 
                                 <Button onClick={() => setCheckout()} className='mt-3' type='danger'>Sepete Ekle</Button>
+                                {
+                                    controlMessage && (
+                                        <Message variant='info' children="Üye olmadan devam edilemez" />
+                                    )
+                                }
                             </div>
                         </>
                     }

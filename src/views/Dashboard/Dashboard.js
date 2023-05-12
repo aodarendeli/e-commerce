@@ -5,6 +5,7 @@ import Campaign from '../../components/Campaign/Campaign'
 import Slider from '../../components/Slider/Slider';
 import Products from '../../components/Products/Products';
 import Categories from '../../components/Categories/Categories';
+import Banner from '../../components/Banners/Banner';
 
 function Dashboard() {
 
@@ -16,6 +17,7 @@ function Dashboard() {
       <Slider />
       <Categories />
       <Products />
+      <Banner />
       </>
   )
 }

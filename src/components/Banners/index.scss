@@ -1,0 +1,10 @@
+.banner-header{
+    h5{
+        color: gray;
+        opacity: 1;
+        &:hover{
+            opacity: .8;
+            cursor: pointer;
+        }
+    }
+}

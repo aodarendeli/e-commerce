@@ -24,6 +24,9 @@ const GetProductDetail = () => {
     useEffect(() => {
         dispatch(fecthProductSelectedList(params.id))
     }, [dispatch])
+useEffect(() => {
+      console.log("guid",selectUserAdmin);
+    }, [])
 
     let selectedProductLister = useSelector(selectedProductsList)
 
@@ -32,7 +35,7 @@ const GetProductDetail = () => {
     }
 
     const setCheckout = () => {
-        if(userGuid) {
+        if(userGuid||localStorage.getItem("userGuid")) {
         let payload = {
             customerGuid: localStorage.getItem("userGuid"),
             productId: selectedProductList,

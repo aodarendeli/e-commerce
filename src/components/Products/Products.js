@@ -16,7 +16,7 @@ const Products = () => {
         <div className='container mt-3 mb-3'>
             <div className='row'>
                 <h3>Product Overview</h3>
-                <div className='col d-flex flex-wrap row-gap col-gap'>
+                <div className='col-lg-12 col-md-12 col-sm-12 d-flex flex-wrap row-gap col-gap'>
                     <ProductDetail productList={productList} />
                 </div>
             </div>

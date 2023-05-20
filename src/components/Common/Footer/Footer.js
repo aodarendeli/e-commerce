@@ -6,7 +6,7 @@ function Footer() {
         <div className="mt-5 pt-5 pb-5 footer">
             <div className="container">
                 <div className="row">
-                    <div class="footer-bank-logos">
+                    <div className="footer-bank-logos">
                         <img height="22" loading="lazy"
                             src="https://images.hepsiburada.net/assets/footer-sf/bonus-new.svg" width="100" />
                         <img

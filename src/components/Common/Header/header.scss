@@ -1,0 +1,20 @@
+.shopping-count{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 12px;
+    // z-index: 9;
+    color: black;
+    background-color: #fefefe;
+    border-radius: 50%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.fa-cart-shopping{
+    position: relative;
+    z-index: 10;
+    padding: 10px 10px;
+}
+.shopping {
+    position: relative;
+}

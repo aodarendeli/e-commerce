@@ -6,6 +6,7 @@ const { request } = requestUtil();
 const initialState = {
     loading: false,
     orderList: [],
+    // orderLength: 0,
     basketList: [],
     error: ''
 }
@@ -20,18 +21,22 @@ export const fecthOrderList = createAsyncThunk(
 
 export const fetchbasketList = createAsyncThunk(
     'basket/fetchbasketList',
-    async (id,payload) => {
-        console.log("payload",payload)
+    async (id, payload) => {
+        console.log("payload", payload)
         const response = await request.get(`/Basket?userId=${id}`, payload);
-        console.log("res",response)
+        // state.orderLength = response.data.data.orderModel.orderItemEntities.length
+        console.log("res",)
         return response.data;
     }
-)   
+)
 
 const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
+        // orderLengthInfo(state, action) {
+        //     state.orderLength = action.payload;
+        // }
     },
     extraReducers: builder => {
         builder.addCase(fecthOrderList.pending, state => {
@@ -67,6 +72,8 @@ const orderSlice = createSlice({
 
 export const selectOrderList = state => state.order.orderList.data;
 export const selectBasketList = state => state.order.basketList.data;
+// export const { orderLengthInfo } = orderSlice.actions;
+
 
 export default orderSlice.reducer;
 

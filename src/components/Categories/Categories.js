@@ -1,6 +1,8 @@
 import React from 'react'
 import { useEffect } from 'react'
 import { Card } from 'react-bootstrap'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { fecthCategoriesList, selectCategoriesist } from '../../store/categories'
@@ -22,21 +24,29 @@ function Categories() {
     return (
         <div className='container mt-3'>
             <div className='row'>
-
                 <h3>Categories</h3>
-
-                {
-                    categoriesList && categoriesList.map(value => (
-                        <div className='col-lg-4 col-md-6 col-sm-12'>
-                            <Card className='product-categories' onClick={() => setHandleClick(value)}>
-                                <div className='d-flex justify-content-between align-items-center px-3'>
-                                    {value.name}
-                                    <img width={300} height={200} src='https://themewagon.github.io/cozastore/images/banner-01.jpg' />
+                <Swiper
+                    spaceBetween={10}
+                    slidesPerView={3}
+                    onSlideChange={() => console.log('slide change')}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    className="mt-3"
+                >
+                    {
+                        categoriesList && categoriesList.map((value,index) => (
+                            <SwiperSlide key={index}>
+                                <div className='col-lg-4 col-md-6 col-sm-12'>
+                                    <Card className='product-categories' onClick={() => setHandleClick(value)}>
+                                        <div className='d-flex justify-content-between align-items-center px-3'>
+                                            {value.name}
+                                            <img width={300} height={200} src='https://themewagon.github.io/cozastore/images/banner-01.jpg' />
+                                        </div>
+                                    </Card>
                                 </div>
-                            </Card>
-                        </div>
-                    ))
-                }
+                            </SwiperSlide>
+                        ))
+                    }
+                </Swiper>
             </div>
         </div>
     )

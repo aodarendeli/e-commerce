@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
 import { logout, selectUserInfo } from '../../../store/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from "react-i18next";
 import Form from 'react-bootstrap/Form';
-
+import './header.scss'
 
 
 function Header() {
   const dispatch = useDispatch()
   const userInformation = useSelector(selectUserInfo)
-  console.log(userInformation)
+  const val = useSelector(state => state)
+  const [orderLength, setOrderLength] = useState(localStorage.getItem("orderLength"))
 
   const { t, i18n } = useTranslation();
   const [type, setType] = useState('tr');
@@ -26,10 +27,10 @@ function Header() {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar bg="light" variant="light" expand="lg">
         <Container>
           <Link to="/">
-            <Navbar.Brand>E-Commerce</Navbar.Brand>
+            <Navbar.Brand>Free-Store</Navbar.Brand>
           </Link>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -40,11 +41,12 @@ function Header() {
               </Link>
             </Nav> */}
             {userInformation &&
-              <Nav className="me-auto">
-                <Link to="/order" className='nav-link'>
-                  <i className="fas fa-cart-shopping me-2"></i>Order
-                </Link>
-              </Nav>
+              // <Nav className="me-auto">
+              //   <Link to="/order" className='nav-link'>
+              //     <i className="fas fa-cart-shopping me-2"></i>Order
+              //   </Link>
+              // </Nav>
+              <></>
             }
 
             <Nav>
@@ -59,11 +61,22 @@ function Header() {
             <Nav>
               {userInformation ? (
                 <>
-                  <Link to="/" className='nav-link' onClick={logoutHandler}>
+                  <Nav className="me-auto">
+                    <Link to="/order" className='nav-link'>
+                      <div className='shopping'>
+                        <i className="fas fa-cart-shopping me-2">
+                          <span className='shopping-count'>{orderLength}</span>
+                        </i>Sepetim
+
+                      </div>
+                    </Link>
+                  </Nav>
+                  <Link to="/" className='nav-link d-flex align-items-center' onClick={logoutHandler}>
                     <i className="fas fa-user mx-2"></i>
                     <span>{userInformation.name}</span>
                     <span className='mx-2'>logout</span>
                   </Link>
+
                   {/* <Link to="/addcampaign">
                     <span className='mx-2'>Add Campaign</span>
                   </Link> */}
@@ -77,7 +90,7 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </header>
+    </header >
   );
 }
 

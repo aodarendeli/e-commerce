@@ -8,10 +8,10 @@ function Order() {
     const dispatch = useDispatch();
     const basketList = useSelector(selectBasketList)
     const navigate = useNavigate()
-    console.log("sepet", basketList)
     useEffect(() => {
         dispatch(fetchbasketList(localStorage.getItem("userGuid")))
     }, [dispatch])
+    
 
     const selectUrl = basketList?.orderModel?.orderEntity?.guid
     const setOrderCheckout = () => {

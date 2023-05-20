@@ -19,8 +19,8 @@ function Login() {
     const redirect = location.search ? location.search.split('=')[1] : '/'
     const userInformation = useSelector(selectUserInfo)
     const user = userInformation && jwt(userInformation.data)
-    localStorage.setItem("userGuid",user.Guid)
-    localStorage.setItem("userName",user.Name)
+    localStorage.setItem("userGuid",user?.Guid)
+    localStorage.setItem("userName",user?.Name)
     const selectAdmins = useSelector(selectAdmin)
 
 

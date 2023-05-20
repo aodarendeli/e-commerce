@@ -11,7 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-a{
+
+a {
   text-decoration: none !important;
 }
 
@@ -21,4 +22,14 @@ a{
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+p,span {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  color: #484848;
+  font-weight: 700;
+  font-size: 15px;
+  margin: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }

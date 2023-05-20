@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, Carousel, Form } from 'react-bootstrap';
+import { Button, Card, Carousel, Form, Tab, Tabs } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { selectAdmin, selectUserInfo, controlUser } from '../../store/auth';
@@ -12,20 +12,20 @@ import Message from '../Message/Message';
 const GetProductDetail = () => {
     let params = useParams();
     const [quantity, setQuantitiy] = useState(1)
-    const [controlMessage,setControlMessage] = useState(false)
+    const [controlMessage, setControlMessage] = useState(false)
     const navigate = useNavigate();
     const selectUserAdmin = useSelector(controlUser)
     const userGuid = selectUserAdmin.payload.auth.controlUser.guid
-    const selectedProductList = useSelector(state=>state.product.selectedProductList?.data?.mainProduct?.id)
+    const selectedProductList = useSelector(state => state.product.selectedProductList?.data?.mainProduct?.id)
     const dispatch = useDispatch()
 
-    
+
 
     useEffect(() => {
         dispatch(fecthProductSelectedList(params.id))
     }, [dispatch])
-useEffect(() => {
-      console.log("guid",selectUserAdmin);
+    useEffect(() => {
+        console.log("guid", selectUserAdmin);
     }, [])
 
     let selectedProductLister = useSelector(selectedProductsList)
@@ -35,22 +35,24 @@ useEffect(() => {
     }
 
     const setCheckout = () => {
-        if(userGuid||localStorage.getItem("userGuid")) {
-        let payload = {
-            customerGuid: localStorage.getItem("userGuid"),
-            productId: selectedProductList,
-            quantity: quantity,
-            status: "Open",
+        if (userGuid || localStorage.getItem("userGuid")) {
+            let payload = {
+                customerGuid: localStorage.getItem("userGuid"),
+                productId: selectedProductList,
+                quantity: quantity,
+                status: "Open",
+            }
+            dispatch(fecthOrderList(payload))
+            setTimeout(() => {
+                navigate('/order')
+            }, [100])
         }
-        dispatch(fecthOrderList(payload))
-        setTimeout(() => {
-            navigate('/order')
-        },[100])
+        else {
+            setControlMessage(true)
+        }
     }
-    else{
-        setControlMessage(true)
-    }
-}
+
+    console.log(selectedProductLister)
     return (
         <>
             <div className='container'>
@@ -88,14 +90,14 @@ useEffect(() => {
                                     ))}
                                 </div>
                                 <span>Stok Durumu: {selectedProductLister?.mainProduct.stock}</span>
-                                <div className='d-flex'>
+                                {/* <div className='d-flex' style={{padding: '10px'}}>
                                     <button onClick={() => setQuantitiy(quantity - 1)} disabled={quantity < 2}>-</button>
                                     <span>{quantity}</span>
                                     <button onClick={() => setQuantitiy(quantity + 1)}>+</button>
-                                </div>
+                                </div> */}
 
 
-                                <Button onClick={() => setCheckout()} className='mt-3' type='danger'>Sepete Ekle</Button>
+                                <Button onClick={() => setCheckout()} className='mt-3 btn-dark' type='danger'>Sepete Ekle</Button>
                                 {
                                     controlMessage && (
                                         <Message variant='info' children="Üye olmadan devam edilemez" />
@@ -104,6 +106,44 @@ useEffect(() => {
                             </div>
                         </>
                     }
+                </div>
+
+                <div className='col-lg-12 col-md-12 col-sm-12 mt-5 mb-3 product-detail'>
+                    <Tabs
+                        defaultActiveKey="product-desc"
+                        id="uncontrolled-tab-example"
+                        className="mb-3"
+                    >
+                        <Tab eventKey="product-desc" title="Ürün Açıklaması">
+                            <div className='d-flex row'>
+                                <span className='mt-1 mb-1'>Ürün Açıklaması: {selectedProductLister?.mainProduct?.description}</span>
+                                <span className='mt-1 mb-1'>Ürün Adı: {selectedProductLister?.mainProduct?.name}</span>
+                                <span className='mt-1 mb-1'>Ürün Kodu: {selectedProductLister?.mainProduct?.productCode}</span>
+                                <span className='mt-1 mb-1'>Ürün Fiyatı: {selectedProductLister?.mainProduct?.price} TL</span>
+
+                            </div>
+                        </Tab>
+                        <Tab eventKey="product-buy" title="Taksit Seçenekleri">
+                            <div className='d-flex row'>
+                                <span className='mt-1 mb-1'>
+                                    * Bazı vade tutarları ortalama değerlerdir, ödeme adımında ürünlerin KDV’lerinin farklılıklarından dolayı değişkenlik gösterebilir.
+                                </span>
+                                <span className='mt-1 mb-1'>
+                                    * Ödeme esnasında erteleme işlemi seçilen taksitlerde vade farkından dolayı tutar farklılıkları görülebilir.
+                                </span>
+                            </div>
+                        </Tab>
+                        <Tab eventKey="price-info" title="Güvenli Ödeme">
+                            <div className='d-flex row'>
+                                <span className='mt-1 mb-1'>
+                                    * Bazı vade tutarları ortalama değerlerdir, ödeme adımında ürünlerin KDV’lerinin farklılıklarından dolayı değişkenlik gösterebilir.
+                                </span>
+                                <span className='mt-1 mb-1'>
+                                    * Ödeme esnasında erteleme işlemi seçilen taksitlerde vade farkından dolayı tutar farklılıkları görülebilir.
+                                </span>
+                            </div>
+                        </Tab>
+                    </Tabs>
                 </div>
             </div>
         </>

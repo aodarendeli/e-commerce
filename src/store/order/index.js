@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import requestUtil from '../../helpers/requestUtil'
 const { request } = requestUtil();
 
@@ -37,6 +37,24 @@ const orderSlice = createSlice({
         // orderLengthInfo(state, action) {
         //     state.orderLength = action.payload;
         // }
+        reduceBasketQuantity: (state, action) => {
+            console.log(current(state))
+            for (let index = 0; index < state.basketList.data.orderModel.orderItemEntities.length; index++) {
+                console.log(state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId )
+                if (state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId == action.payload.value.orderItemEntity.productId) {
+                    state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.quantity --;
+                }
+            }
+        },
+        increaseBasketQuantity: (state, action) => {
+            console.log(current(state))
+            for (let index = 0; index < state.basketList.data.orderModel.orderItemEntities.length; index++) {
+                console.log(state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId )
+                if (state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId == action.payload.value.orderItemEntity.productId) {
+                    state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.quantity ++;
+                }
+            }
+        },
     },
     extraReducers: builder => {
         builder.addCase(fecthOrderList.pending, state => {
@@ -73,6 +91,7 @@ const orderSlice = createSlice({
 export const selectOrderList = state => state.order.orderList.data;
 export const selectBasketList = state => state.order.basketList.data;
 // export const { orderLengthInfo } = orderSlice.actions;
+export const { reduceBasketQuantity,increaseBasketQuantity } = orderSlice.actions;
 
 
 export default orderSlice.reducer;

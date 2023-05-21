@@ -1,6 +1,29 @@
-.basket-container{
+.basket-container {
     width: 100%;
-    .card{
+
+    .basket-button-container {
         padding: 10px;
     }
+
+    .basket-buttons {
+        border: 1px solid black;
+        border-radius: 15px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100px;
+    }
+
+    i {
+        padding: 5px;
+    }
+
+    i:hover {
+        cursor: pointer;
+        background-color: black;
+        opacity: .2;
+        border-radius: 50%;
+    }
 }
+

@@ -26,11 +26,11 @@ function Order() {
     const summaryTotal = () => {
         let productLength = basketList?.orderModel?.orderItemEntities?.length
         let val = basketList?.orderModel?.orderItemEntities.map(item => item.product.price * item.orderItemEntity.quantity)
-        let summaryTotal = val?.reduce((a, b) => a + b, 0)
+        let summaryTotals = val?.reduce((a, b) => a + b, 0)
         return (
             <>
                 <h6>Seçilen Ürünler ({productLength})</h6>
-                <span>{summaryTotal} TL</span>
+                <span>{summaryTotals} TL</span>
             </>
         )
     }

@@ -1,0 +1,17 @@
+.mainbox {
+    // background-color: #95c2de;
+    margin: auto;
+    width: 220px !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 100px;
+    justify-content: center;
+    text-align: center;
+}
+.error-container{
+    height: 500px;
+    .cursor-link{
+        cursor: pointer;
+    }
+}

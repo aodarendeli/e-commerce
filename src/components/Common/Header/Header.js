@@ -11,8 +11,7 @@ import './header.scss'
 function Header() {
   const dispatch = useDispatch()
   const userInformation = useSelector(selectUserInfo)
-  const val = useSelector(state => state)
-  const [orderLength, setOrderLength] = useState(localStorage.getItem("orderLength"))
+  const val = useSelector(state => state?.order?.basketList?.data?.orderModel?.orderItemEntities.length)
 
   const { t, i18n } = useTranslation();
   const [type, setType] = useState('tr');
@@ -65,7 +64,7 @@ function Header() {
                     <Link to="/order" className='nav-link'>
                       <div className='shopping'>
                         <i className="fas fa-cart-shopping me-2">
-                          <span className='shopping-count'>{orderLength}</span>
+                          <span className='shopping-count'>{val}</span>
                         </i>Sepetim
 
                       </div>

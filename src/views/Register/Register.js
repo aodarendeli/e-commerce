@@ -42,8 +42,8 @@ function Register() {
     }
 
     return (
-        <Container>
-            <h1>Sign Up</h1>
+        <Container className='sign-container'>
+            <h6>Sign Up</h6>
             {/* {message && <Message variant='danger'>{message}</Message>}
             {
                 error && <Message variant='danger'>{error}</Message>
@@ -84,7 +84,7 @@ function Register() {
                         onChange={(e) => setConfirmPassword(e.target.value)}>
                     </Form.Control>
                 </Form.Group> */}
-                <Button type='submit' variant='primary' className='mt-3'>
+                <Button type='submit' variant='primary' className='mt-3 btn-dark'>
                     Sign In
                 </Button>
             </Form>

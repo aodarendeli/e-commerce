@@ -7,6 +7,7 @@ import Loader from '../../components/Loader/Loader'
 import { selectUserInfo, selectLoadingState, selectErrorState, LoginUser, checkAdmin, selectAdmin, controlUser } from '../../store/auth'
 import { useLocation, useNavigate } from 'react-router-dom';
 import jwt from 'jwt-decode';
+import './login.scss'
 
 function Login() {
     const [username, seUsername] = useState("")
@@ -54,8 +55,8 @@ function Login() {
     // }, [dispatch])
 
     return (
-        <Container>
-            <h1>Sign In</h1>
+        <Container className='sign-container'>
+            <h6 className='mt-2 mb-2'>Sign In</h6>
             {
                 error && <Message variant='danger'>{error}</Message>
             }
@@ -78,7 +79,7 @@ function Login() {
                     </Form.Control>
                 </Form.Group>
 
-                <Button type='submit' variant='primary' className='mt-3'>
+                <Button className="btn-dark mt-3" type='submit' variant='primary'>
                     Sign In
                 </Button>
             </Form>

@@ -26,20 +26,27 @@ function Categories() {
             <div className='row'>
                 <h3>Categories</h3>
                 <Swiper
-                    spaceBetween={10}
-                    slidesPerView={3}
+                    breakpoints={{
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        0: {
+                            slidesPerView: 1,
+                        },
+                    }}
+                    spaceBetween={20}
                     onSlideChange={() => console.log('slide change')}
                     onSwiper={(swiper) => console.log(swiper)}
                     className="mt-3"
                 >
                     {
-                        categoriesList && categoriesList.map((value,index) => (
+                        categoriesList && categoriesList.map((value, index) => (
                             <SwiperSlide key={index}>
-                                <div className='col-lg-4 col-md-6 col-sm-12'>
+                                <div className='col-lg-4 col-md-6 col-sm-12 w-100'>
                                     <Card className='product-categories' onClick={() => setHandleClick(value)}>
                                         <div className='d-flex justify-content-between align-items-center px-3'>
                                             {value.name}
-                                            <img width={300} height={200} src='https://themewagon.github.io/cozastore/images/banner-01.jpg' />
+                                            <img className='img-fluid' src='https://themewagon.github.io/cozastore/images/banner-01.jpg' />
                                         </div>
                                     </Card>
                                 </div>

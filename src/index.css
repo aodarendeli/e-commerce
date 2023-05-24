@@ -24,7 +24,7 @@ a {
   flex-wrap: wrap;
 }
 
-p,span {
+p,span,h6 {
   font-family: Inter, -apple-system, BlinkMacSystemFont, Arial, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   color: #484848;
   font-weight: 700;

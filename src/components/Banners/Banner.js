@@ -14,22 +14,22 @@ function Banner() {
             </div>
             <Row className='text-center'>
                 <Col lg={3} className="d-flex row border-right mx-1">
-                    <h4 className='mb-2'>Yarın Kapında</h4>
+                    <span className='mb-2'>Yarın Kapında</span>
                     <img src='https://images.hepsiburada.net/assets/sfstatic/Content/images/mobil-yarin-kapinda.svg' width={175} height={175} />
                     <span className='mt-2'>Yarın Kapında ile ihtiyaçlarına ertesi gün sahip ol</span>
                 </Col>
                 <Col lg={3} className="d-flex row border-right mx-1">
-                    <h4 className='mb-2'>Tek Tıkla Güvenli Alışveriş</h4>
+                    <span className='mb-2'>Tek Tıkla Güvenli Alışveriş</span>
                     <img src='https://images.hepsiburada.net/assets/sfstatic/Content/images/mobil-tek-tikla-alisveris.svg' width={175} height={175} />
                     <span className='mt-2'>Yarın Kapında ile ihtiyaçlarına ertesi gün sahip ol</span>
                 </Col>
                 <Col lg={3} className="d-flex row border-right mx-1">
-                    <h4>Mobil Cebinizde</h4>
+                    <span>Mobil Cebinizde</span>
                     <img className='mb-2' src='https://images.hepsiburada.net/assets/sfstatic/Content/images/mobil-cebinizde.svg' width={175} height={175} />
                     <span className='mt-2'>Yarın Kapında ile ihtiyaçlarına ertesi gün sahip ol</span>
                 </Col>
                 <Col lg={3} className="d-flex row">
-                    <h4 className='mb-2'>Kapında İade</h4>
+                    <span className='mb-2'>Kapında İade</span>
                     <img src='https://images.hepsiburada.net/banners/0/imageUrl2107_20230116110649.png' width={155} height={175} />
                     <span className='mt-2'>Yarın Kapında ile ihtiyaçlarına ertesi gün sahip ol</span>
                 </Col>

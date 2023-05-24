@@ -43,7 +43,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="row mt-5 ">
-                    <div className="col copyright d-flex justify-content-between align-items-center">
+                    <div className="col-sm-12 copyright d-flex justify-content-between align-items-center">
                         <img src='https://images.hepsiburada.net/assets/footerWebP/imageUrl2094_20201110131516.webp' />
                         <p className=""><small>© 2023. All Rights Reserved.</small></p>
                     </div>

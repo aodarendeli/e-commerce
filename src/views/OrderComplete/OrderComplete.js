@@ -19,7 +19,6 @@ function OrderComplete() {
     let orderGuidsInfo = useSelector(state => state.order?.basketList?.data?.orderModel?.orderEntity?.guid)
     let adressInfo = useSelector(state => state.adress?.allAdressList?.data[0].guid)
     let paymnetListInfo = useSelector(selectPaymentList)
-    console.log(paymnetListInfo)
     const handleClose = () => {
         setShow(false)
     }
@@ -36,7 +35,6 @@ function OrderComplete() {
                 cardHolderName: name
             }
         }
-        console.log(JSON.stringify(payload))
         dispatch(fetchpaymentList(payload))
         if (paymnetListInfo == true) {
             setShow(true)

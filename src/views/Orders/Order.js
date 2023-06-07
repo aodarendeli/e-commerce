@@ -35,8 +35,6 @@ function Order() {
         )
     }
 
-    console.log(basketList)
-
     return (
         <div className='container'>
             <h3 className='mt-2'>Sepetim</h3>

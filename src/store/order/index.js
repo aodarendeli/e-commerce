@@ -23,10 +23,8 @@ export const fecthOrderList = createAsyncThunk(
 export const fetchbasketList = createAsyncThunk(
     'basket/fetchbasketList',
     async (id, payload) => {
-        console.log("payload", payload)
         const response = await request.get(`/Basket?userId=${id}`, payload);
         // state.orderLength = response.data.data.orderModel.orderItemEntities.length
-        console.log("res",)
         return response.data;
     }
 )
@@ -34,7 +32,6 @@ export const fetchbasketList = createAsyncThunk(
 export const fetchpaymentList = createAsyncThunk(
     'order/paymentList',
     async (payload) => {
-        console.log("store",payload)
         const response = await request.post(`/Order/OrderComplete`, payload);
         return response.data;
     }
@@ -48,18 +45,14 @@ const orderSlice = createSlice({
         //     state.orderLength = action.payload;
         // }
         reduceBasketQuantity: (state, action) => {
-            console.log(current(state))
             for (let index = 0; index < state.basketList.data.orderModel.orderItemEntities.length; index++) {
-                console.log(state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId )
                 if (state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId == action.payload.value.orderItemEntity.productId) {
                     state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.quantity --;
                 }
             }
         },
         increaseBasketQuantity: (state, action) => {
-            console.log(current(state))
             for (let index = 0; index < state.basketList.data.orderModel.orderItemEntities.length; index++) {
-                console.log(state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId )
                 if (state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.productId == action.payload.value.orderItemEntity.productId) {
                     state.basketList.data.orderModel.orderItemEntities[index].orderItemEntity.quantity ++;
                 }

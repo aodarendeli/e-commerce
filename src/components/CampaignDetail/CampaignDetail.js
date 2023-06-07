@@ -9,11 +9,9 @@ import Loader from '../Loader/Loader';
 
 function CampaignDetail() {
     let params = useParams();
-    // console.log(params.id)
     const dispatch = useDispatch()
     const campaignSelectedList = useSelector(selectCampaignSelectedList)
     const campaignLoading = useSelector(selectCampignLoadingState)
-    console.log("list : => ", campaignSelectedList)
     const { t } = useTranslation();
 
 

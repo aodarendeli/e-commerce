@@ -5,28 +5,29 @@ import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { selectAdmin, selectUserInfo, controlUser } from '../../store/auth';
 import { fecthProductSelectedList, selectedProductsList, selectProductsList, swapProducts } from '../../store/products';
 import '../../styles/product.scss'
-import { fecthOrderList } from '../../store/order';
+import { fecthOrderList,selectOrderList } from '../../store/order';
 import Message from '../Message/Message';
-
+import ToastInfo from '../Toast/ToastInfo';
 
 const GetProductDetail = () => {
     let params = useParams();
     const [quantity, setQuantitiy] = useState(1)
+    const [show, setShow] = useState(false);
     const [controlMessage, setControlMessage] = useState(false)
     const navigate = useNavigate();
     const selectUserAdmin = useSelector(controlUser)
     const userGuid = selectUserAdmin.payload.auth.controlUser.guid
     const selectedProductList = useSelector(state => state.product.selectedProductList?.data?.mainProduct?.id)
     const dispatch = useDispatch()
-
-
+    const selectOrderListInfo = useSelector(selectOrderList)
+    
+    const handleClose = () => {
+        setShow(false)
+    }
 
     useEffect(() => {
         dispatch(fecthProductSelectedList(params.id))
     }, [dispatch])
-    useEffect(() => {
-        console.log("guid", selectUserAdmin);
-    }, [])
 
     let selectedProductLister = useSelector(selectedProductsList)
 
@@ -43,18 +44,18 @@ const GetProductDetail = () => {
                 status: "Open",
             }
             dispatch(fecthOrderList(payload))
-            // setTimeout(() => {
-            // navigate('/order')
-            // }, [1000])
+            if (selectOrderListInfo) {
+                setShow(true)
+            }
         }
         else {
             setControlMessage(true)
         }
     }
 
-    console.log(selectedProductLister)
     return (
         <>
+        {selectOrderListInfo && <ToastInfo onClose={handleClose} show={show} title="Ürün Ekleme" body="Ürün Başarıyla Sepete Eklendi." />}
             <div className='container'>
                 <div className='row'>
                     <h1>Main Product</h1>
@@ -90,12 +91,6 @@ const GetProductDetail = () => {
                                     ))}
                                 </div>
                                 <span>Stok Durumu: {selectedProductLister?.mainProduct.stock}</span>
-                                {/* <div className='d-flex' style={{padding: '10px'}}>
-                                    <button onClick={() => setQuantitiy(quantity - 1)} disabled={quantity < 2}>-</button>
-                                    <span>{quantity}</span>
-                                    <button onClick={() => setQuantitiy(quantity + 1)}>+</button>
-                                </div> */}
-
 
                                 <Button onClick={() => setCheckout()} className='mt-3 btn-dark' type='danger'>Sepete Ekle</Button>
                                 {

@@ -58,7 +58,6 @@ function Checkout() {
     dispatch(fetchAdressList(payload))
   }
   const summaryTotal = () => {
-    console.log(checkoutList)
     let productLength = checkoutList?.basketEntity?.orderModel?.orderItemEntities?.length
     let val = checkoutList?.basketEntity?.orderModel?.orderItemEntities.map(item => item.product.price * item.orderItemEntity.quantity)
     let summaryTotals = val?.reduce((a, b) => a + b, 0)

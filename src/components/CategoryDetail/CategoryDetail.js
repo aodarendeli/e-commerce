@@ -7,7 +7,6 @@ function CategoryDetail() {
     const dispatch = useDispatch()
     const params = useParams()
     const selectedList = useSelector(selectedCategoriesist)
-    console.log("selected", selectedList)
 
     useEffect(() => {
         dispatch(fecthCategoriesListWithId(params.id))

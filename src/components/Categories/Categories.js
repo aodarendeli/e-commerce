@@ -13,7 +13,6 @@ function Categories() {
     const navigate = useNavigate()
 
     const categoriesList = useSelector(selectCategoriesist)
-    console.log(categoriesList)
 
     useEffect(() => {
         dispatch(fecthCategoriesList())

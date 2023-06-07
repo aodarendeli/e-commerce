@@ -87,7 +87,6 @@ const authSlice = createSlice({
     })
     builder.addCase(LoginUser.fulfilled, (state, action) => {
       state.loading = false
-      console.log(state.error)
       if (action.payload == "Kullanıcı Adı veya Şifre hatalı") {
         state.userInfo = "";
         state.error = action.payload;

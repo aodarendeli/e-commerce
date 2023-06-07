@@ -8,6 +8,7 @@ const initialState = {
     orderList: [],
     // orderLength: 0,
     basketList: [],
+    paymentList: [],
     error: ''
 }
 
@@ -26,6 +27,15 @@ export const fetchbasketList = createAsyncThunk(
         const response = await request.get(`/Basket?userId=${id}`, payload);
         // state.orderLength = response.data.data.orderModel.orderItemEntities.length
         console.log("res",)
+        return response.data;
+    }
+)
+
+export const fetchpaymentList = createAsyncThunk(
+    'order/paymentList',
+    async (payload) => {
+        console.log("store",payload)
+        const response = await request.post(`/Order/OrderComplete`, payload);
         return response.data;
     }
 )
@@ -85,11 +95,28 @@ const orderSlice = createSlice({
             state.basketList = []
             state.error = action.error.message
         })
+
+         // ------------
+         builder.addCase(fetchpaymentList.pending, state => {
+            state.loading = true
+        })
+        builder.addCase(fetchpaymentList.fulfilled, (state, action) => {
+            state.loading = false
+            state.paymentList = action.payload
+            state.error = ''
+        })
+        builder.addCase(fetchpaymentList.rejected, (state, action) => {
+            state.loading = false
+            state.paymentList = []
+            state.error = action.error.message
+        })
     }
 })
 
 export const selectOrderList = state => state.order.orderList.data;
 export const selectBasketList = state => state.order.basketList.data;
+export const selectPaymentList = state => state.order.paymentList.data;
+
 // export const { orderLengthInfo } = orderSlice.actions;
 export const { reduceBasketQuantity,increaseBasketQuantity } = orderSlice.actions;
 

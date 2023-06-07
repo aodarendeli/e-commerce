@@ -43,9 +43,9 @@ const GetProductDetail = () => {
                 status: "Open",
             }
             dispatch(fecthOrderList(payload))
-            setTimeout(() => {
-                navigate('/order')
-            }, [100])
+            // setTimeout(() => {
+            // navigate('/order')
+            // }, [1000])
         }
         else {
             setControlMessage(true)

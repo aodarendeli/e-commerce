@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, FloatingLabel, Form, Dropdown, Row, Col, Button, Tabs, Tab } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { fetchAdressList, fetchGetAdressList, selectAllAdressList } from '../../store/adresses'
 import { fetchCheckoutList, fetchCityList, fetchDistrictList, selectCheckoutList, selectCityList, selectDistrictList } from '../../store/checkout'
 import './checkout.scss'
@@ -157,7 +157,7 @@ function Checkout() {
                   </FloatingLabel>
                 </Col>
               </Row>
-              <Row> 
+              <Row>
                 <Col lg={6} className='w-100'>
                   <FloatingLabel controlId="floatingInputGrid" label="Phone" className='mt-2'>
                     <Form.Control type="text" placeholder="phone" onChange={(e) => setPhoneNumber(e.target.value)} />
@@ -200,9 +200,11 @@ function Checkout() {
             <div>
               {summaryTotal()}
             </div>
-            <Button className='mt-3 btn-dark' variant='danger'>
-              Siparişi Onayla
-            </Button>
+            <Link to="/order/orderComplete">
+              <Button className='mt-3 btn-dark' variant='danger'>
+                Siparişi Onayla
+              </Button>
+            </Link>
           </Card>
         </Col>
       </Row>

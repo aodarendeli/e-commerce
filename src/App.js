@@ -14,6 +14,7 @@ import CategoryDetail from './components/CategoryDetail/CategoryDetail';
 import Checkout from './views/Checkout/Checkout';
 import ProtectedRoutes from './protectedRoute';
 import Error from './views/404/Error';
+import OrderComplete from './views/OrderComplete/OrderComplete';
 function App() {
   return (
     <>
@@ -30,6 +31,7 @@ function App() {
               <Route path="/order" element={<Order />} />
               <Route path="/checkout/:id" element={<Checkout />} />
               <Route path="/addcampaign" element={<AddCampaign />} />
+              <Route path="/order/orderComplete" element={<OrderComplete />} />
             </Route>
             <Route path="/404" element={<Error />} />
             <Route path="/login" element={<Login />} />

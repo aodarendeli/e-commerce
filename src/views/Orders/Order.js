@@ -3,7 +3,7 @@ import { Button, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import Message from '../../components/Message/Message';
-import { fetchbasketList, reduceBasketQuantity, selectBasketList, increaseBasketQuantity } from '../../store/order';
+import { fetchbasketList, reduceBasketQuantity, selectBasketList, increaseBasketQuantity,putReduceQuantity } from '../../store/order';
 import './order.scss'
 function Order() {
     const dispatch = useDispatch();
@@ -19,6 +19,13 @@ function Order() {
     }
     const decreaseQuantitiy = (item) => {
         dispatch(reduceBasketQuantity(item))
+        let payload = {
+            orderGuid: item.value.orderItemEntity.guid,
+            orderItemGuid: item.value.orderItemEntity.orderId,
+            productGuid: item.value.product.id,
+            quantity: item.value.orderItemEntity.quantity - 1
+        }
+        dispatch(putReduceQuantity(payload))
     }
     const increaseQuantitiy = (item) => {
         dispatch(increaseBasketQuantity(item))

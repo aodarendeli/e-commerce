@@ -9,6 +9,7 @@ const initialState = {
     // orderLength: 0,
     basketList: [],
     paymentList: [],
+    quantityList: "",
     error: ''
 }
 
@@ -36,6 +37,15 @@ export const fetchpaymentList = createAsyncThunk(
         return response.data;
     }
 )
+
+export const putReduceQuantity = createAsyncThunk(
+    'order/reduceQuantity',
+    async (payload) => {
+        const response = await request.post(`/Order/setOrderQuantity`, payload);
+        return response.data;
+    }
+)
+
 
 const orderSlice = createSlice({
     name: 'order',
@@ -101,6 +111,21 @@ const orderSlice = createSlice({
         builder.addCase(fetchpaymentList.rejected, (state, action) => {
             state.loading = false
             state.paymentList = []
+            state.error = action.error.message
+        })
+
+           // ------------
+           builder.addCase(putReduceQuantity.pending, state => {
+            state.loading = true
+        })
+        builder.addCase(putReduceQuantity.fulfilled, (state, action) => {
+            state.loading = false
+            state.quantityList = action.payload
+            state.error = ''
+        })
+        builder.addCase(putReduceQuantity.rejected, (state, action) => {
+            state.loading = false
+            state.quantityList = []
             state.error = action.error.message
         })
     }

@@ -19,7 +19,7 @@ export const fecthCategoriesList = createAsyncThunk(
 export const fecthCategoriesListWithId = createAsyncThunk(
     'categoreis/fecthCategoriesListbyId',
     async (id,payload) => {
-        const response = await request.get(`/Category/${id}`, payload);
+        const response = await request.get(`/Product/GetProductListByCategoryGuid?categoryGuid=${id}`, payload);
         return response.data;
     }
 )

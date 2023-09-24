@@ -18,7 +18,7 @@ function Categories() {
         dispatch(fecthCategoriesList())
     }, [dispatch])
     const setHandleClick = (value) => {
-        navigate(`/category/${value.id}`)
+        navigate(`/category/${value.guid}`)
     }
     return (
         <div className='container mt-3'>

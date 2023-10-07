@@ -1,3 +1,46 @@
-.sign-container{
-    height: 500px;
+.custom-login-box {
+    position: relative;
+    left: -30px; // sola kaydırmak için
+
+    .login-content {
+        width: 90%;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); // gölge eklemek için
+        border-radius: 10px; // köşeleri yuvarlamak için
+    }
+
+    .custom-input {
+        border-radius: 5px !important; // yarıçap eklemek için
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important; // input'a gölge eklemek için
+    }
+}
+
+.custom-login-box {
+    position: relative;
+    left: -30px; // sola kaydırmak için
+
+    .login-content {
+        width: 90%;
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); // gölge eklemek için
+        border-radius: 10px; // köşeleri yuvarlamak için
+    }
+
+    .custom-input {
+        border-radius: 5px !important; // yarıçap eklemek için
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important; // input'a gölge eklemek için
+    }
+}
+.full-height {
+    height: 100vh;
+}
+
+.photo-background {
+    background-image: url('../../assets/images/london.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100%; // Bu satırı ekleyin.
 }
